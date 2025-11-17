@@ -121,6 +121,17 @@ body {
   transition: 0.4s ease;
   z-index: 1100;
   overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;pr
+}
+@media (min-width:400px) and (max-width:2000px) {
+  .sidebar{
+    width: 30%;
+  }
+  .sidebar >.social-icons{
+    display: flex;
+    justify-content: flex-start;
+  }
 }
 
 .sidebar.active {
@@ -318,6 +329,7 @@ body {
   display: inline-block;
   font-family: var(--title-font);
   padding: 12px 35px;
+  padding-right: 10px;
   background: var(--primary-color);
   color: #081b29;
   border-radius: 40px;
@@ -668,7 +680,7 @@ body {
 }
 
 .section-title span {
-  color: #0ef;
+  color: rgb(9, 40, 42);
 }
 
 .section-title::after {
@@ -731,7 +743,7 @@ body {
 
 .tech-stack span {
   background: rgba(0, 123, 255, 0.1);
-  color: #007bff;
+  color: rgb(4, 4, 53);
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 0.9rem;
@@ -747,17 +759,17 @@ body {
 
 /* ===== Hover Effects ===== */
 .bg1:hover {
-  background: linear-gradient(135deg, #403b4a, #e7e9bb);
+  background-image: linear-gradient( 90.5deg,  rgba(112,181,176,1) 1.9%, rgba(220,244,241,1) 87.7% );
   color: white;
 }
 
 .bg2:hover {
-  background: linear-gradient(135deg, #757f91, #d7dde8);
+  background-image: linear-gradient( 90.5deg,  rgba(112,181,176,1) 1.9%, rgba(220,244,241,1) 87.7% );
   color: #fff;
 }
 
 .bg3:hover {
-  background: linear-gradient(135deg, #efefbb, #d4d3dd);
+  background-image: linear-gradient( 90.5deg,  rgba(112,181,176,1) 1.9%, rgba(220,244,241,1) 87.7% );
   color: #fff;
 }
 
@@ -883,72 +895,180 @@ body {
 
 
 
-
-
-
+/* ===========================
+   SECTION STYLING
+   =========================== */
 .education-section {
-  background: radial-gradient(circle at top, #0f1020, #070711);
-  color: white;
-  padding: 80px 20px;
-  text-align: center;
-  font-family: var(--p-font);
-  min-height: 100vh;
-
-}
-
-.section-title {
-  font-size: 2.5rem;
-  margin-bottom: 50px;
-  color: #7dd3fc;
-  text-shadow: 0 0 10px rgba(125, 211, 252, 0.6);
   position: relative;
-  font-family: var(--font-title);
+  padding: 80px 20px;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #0e1022, #05050b);
+  color: white;
+  text-align: center;
+  overflow: hidden;
+  font-family: var(--font-body);
 }
 
+/* Floating neon glows */
+.education-section::before,
+.education-section::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, rgba(125, 211, 252, 0.4), transparent 70%);
+  filter: blur(80px);
+  animation: float 12s infinite ease-in-out;
+  z-index: 0;
+}
+.education-section::before { top: -40px; left: -60px; }
+.education-section::after { bottom: -40px; right: -60px; animation-delay: 3s; }
+
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-40px) rotate(20deg); }
+}
+
+/* Section Title */
+.section-title {
+  font-size: 2.6rem;
+  font-family: var(--font-title);
+  color: var(--accent);
+  text-shadow: 0 0 12px var(--accent-light);
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Grid */
 .education-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   justify-items: center;
+  position: relative;
+  z-index: 10;
 }
 
+/* ===========================
+   CARD
+   =========================== */
 .edu-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(125, 211, 252, 0.2);
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(125, 211, 252, 0.1);
-  padding: 30px 20px;
   width: 260px;
-  transition: all 0.4s ease;
+  padding: 32px 20px;
+  border-radius: 22px;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 2px solid var(--glass-border);
+  box-shadow: 0 0 25px rgba(125, 211, 252, 0.12);
+  transition: 0.4s ease;
+  opacity: 0;
+  transform: translateY(30px);
 }
 
+/* Scroll reveal */
+.edu-card.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover */
 .edu-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 30px rgba(125, 211, 252, 0.5);
-  border-color: rgba(125, 211, 252, 0.5);
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 0 35px rgba(125, 211, 252, 0.35);
+  border-color: rgba(125, 211, 252, 0.6);
 }
 
-.edu-card h3 {
-  margin: 15px 0 8px;
-  font-size: 1.4rem;
-  color: #a5b4fc;
+/* Text */
+.edu-card h3 { 
+  margin: 15px 0 8px; 
+  font-size: 1.4rem; 
+  color: #c7d2fe; 
 }
-
-.edu-card p {
-  font-size: 0.95rem;
-  color: #d1d5db;
+.edu-card p { 
+  font-size: 1rem; 
+  color: #e5e7eb; 
+  line-height: 1.5rem; 
 }
-
 .edu-card a {
   color: #93c5fd;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: 0.3s;
 }
-
 .edu-card a:hover {
   color: #60a5fa;
   text-decoration: underline;
 }
+
+/* Text */
+.progress-circle span {
+  position: relative;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #e2e8f0;
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
+}
+
+/* Fill animation */
+@keyframes fill-animation {
+  from { --value: 0deg; }
+  to { --value: var(--target); }
+}
+
+/* ===========================
+   MOBILE RESPONSIVE
+   =========================== */
+@media (max-width: 520px) {
+  .section-title { font-size: 2.1rem; }
+  .edu-card { width: 90%; }
+}
+.progress-circle {
+  --percent: 0;
+  width: 140px;
+  height: 140px;
+  position: relative;
+  border-radius: 50%;
+  background: #1e293b; /* dark base */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body, sans-serif);
+  color: #e2e8f0;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  /* fill via conic-gradient */
+  background: conic-gradient(
+    #00e5ff calc(var(--percent) * 1%), /* accent fill */
+    #1e293b 0
+  );
+  transition: background 0.8s ease;
+}
+
+/* after load we set percent via JS */
+.progress-circle[data-progress] {
+  --percent: attr(data-progress number);
+}
+
+.progress-circle span {
+  position: relative;
+  font-size: 1.5rem;
+  font-weight: bold;
+  z-index: 1;
+  font-family: var(--font-title);
+}
+
+/* optional inner circle to create donut look */
+.progress-circle::before {
+  content: "";
+  position: absolute;
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  background: #0f172a;
+}
+
+
+
+
 
 /* Progress Circle */
 .progress-circle {

@@ -34,3 +34,17 @@ const observer = new IntersectionObserver((entries) => {
 
 revealElements.forEach(el => observer.observe(el));
   
+const cards = document.querySelectorAll('.edu-card');
+
+const observers = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('reveal');
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:0.2});
+
+cards.forEach(card=>observers.observe(card));
+
+
