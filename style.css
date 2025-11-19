@@ -124,7 +124,7 @@ body {
   scrollbar-width: none;
   -ms-overflow-style: none;pr
 }
-@media (min-width:400px) and (max-width:2000px) {
+@media (min-width:400px) and( max-width:2000px) {
   .sidebar{
     width: 30%;
   }
