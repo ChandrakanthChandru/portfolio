@@ -631,7 +631,7 @@ body {
 
 /* ===== Project Cards ===== */
 .projects-section {
-  background: linear-gradient(135deg, #f6f9fc, #e9f1ff, #fffaf5);
+  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(2,37,78,1) 0%, rgba(4,56,126,1) 19.7%, rgba(85,245,221,1) 100.2% );
   background-size: 300% 300%;
   animation: bgFlow 20s ease infinite;
   padding: 100px 5%;
@@ -680,7 +680,7 @@ body {
 }
 
 .section-title span {
-  color: rgb(9, 40, 42);
+  color: rgb(226, 236, 236);
 }
 
 .section-title::after {
@@ -757,26 +757,25 @@ body {
   box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
 }
 
+.bg1,.bg2,.bg3{
+  background-color: white;
+}
 /* ===== Hover Effects ===== */
-.bg1:hover {
+.bg1:hover{
   background-image: linear-gradient( 90.5deg,  rgba(112,181,176,1) 1.9%, rgba(220,244,241,1) 87.7% );
   color: white;
 }
 
-.bg2:hover {
+.bg2:hover{
   background-image: linear-gradient( 90.5deg,  rgba(112,181,176,1) 1.9%, rgba(220,244,241,1) 87.7% );
   color: #fff;
 }
 
-.bg3:hover {
+.bg3:hover{
   background-image: linear-gradient( 90.5deg,  rgba(112,181,176,1) 1.9%, rgba(220,244,241,1) 87.7% );
   color: #fff;
 }
 
-.project-card:hover {
-  transform: translateY(-10px) scale(1.04);
-  box-shadow: 0 20px 40px rgba(0, 123, 255, 0.3);
-}
 
 .project-card::before {
   content: "";
@@ -948,6 +947,7 @@ body {
   justify-items: center;
   position: relative;
   z-index: 10;
+  
 }
 
 /* ===========================
@@ -964,6 +964,7 @@ body {
   transition: 0.4s ease;
   opacity: 0;
   transform: translateY(30px);
+  
 }
 
 /* Scroll reveal */
