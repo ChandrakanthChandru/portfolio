@@ -72,3 +72,40 @@ document.getElementById("contactForm").addEventListener("submit", async (e) => {
     document.getElementById("contactForm").reset();
   }
 });
+
+
+
+
+// Trigger the toggleMenu function when the menu button is clicked
+
+document.getElementById("contactForm").addEventListener("submit", async (e) => {
+  e.preventDefault(); // stop page refresh
+
+  const payload = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    subject: document.getElementById("subject").value,
+    message: document.getElementById("message").value
+  };
+
+  try {
+    const response = await fetch("https://portfolio-backend-bay-six.vercel.app/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+
+    document.getElementById("response").innerText = result.message;
+    document.getElementById("response").style.color = "green";
+
+    // Clear form fields
+    document.getElementById("contactForm").reset();
+  } catch (error) {
+    document.getElementById("response").innerText = "Something went wrong!";
+    document.getElementById("response").style.color = "red";
+    console.error(error);
+  }
+});
+
