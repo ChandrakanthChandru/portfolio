@@ -49,36 +49,11 @@ cards.forEach(card=>observers.observe(card));
 
 
 
-document.getElementById("contactForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const message = document.getElementById("message").value.trim();
-
-  const res = await fetch("/api/contact", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ name, email, message })
-  });
-
-  const data = await res.json();
-
-  document.getElementById("response").innerText = data.message || data.error;
-
-  if (data.success) {
-    document.getElementById("contactForm").reset();
-  }
-});
-
-
-
-
 // Trigger the toggleMenu function when the menu button is clicked
 
-document.getElementById("contactForm").addEventListener("submit", async (e) => {
+const form = document.querySelector(".contact-form form");
+
+form.addEventListener("submit", async (e) => {
   e.preventDefault(); // stop page refresh
 
   const payload = {
@@ -101,7 +76,8 @@ document.getElementById("contactForm").addEventListener("submit", async (e) => {
     document.getElementById("response").style.color = "green";
 
     // Clear form fields
-    document.getElementById("contactForm").reset();
+    form.reset();
+
   } catch (error) {
     document.getElementById("response").innerText = "Something went wrong!";
     document.getElementById("response").style.color = "red";
